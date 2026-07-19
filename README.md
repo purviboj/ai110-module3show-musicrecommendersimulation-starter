@@ -10,17 +10,6 @@ This project simulates a simple content-based music recommendation system. It co
 
 ## How The System Works
 
-Explain your design in plain language.
-
-Some prompts to answer:
-
-- What features does each `Song` use in your system
-  - For example: genre, mood, energy, tempo
-- What information does your `UserProfile` store
-- How does your `Recommender` compute a score for each song
-- How do you choose which songs to recommend
-
-You can include a simple diagram or bullet list if helpful.
 Real-world music recommendation systems use information about users and songs to predict what someone may enjoy listening to next. Some platforms use collaborative filtering by comparing users with similar listening habits, while others use content-based filtering that compares song features such as genre, mood, and energy. This project implements a simple content-based recommender.
 
 The recommender compares a user's preferred genre, mood, energy level, and valence with every song in the dataset. Each song receives points for matching these preferences, and the songs are ranked from the highest score to the lowest. The highest-ranked songs are returned as recommendations.
@@ -94,15 +83,7 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Sample Recommendation Output
 
-Paste a sample of your recommender's output here as a text block so a reader can see what it produces:
 
-```
-# e.g.:
-# User profile: genre=indie, mood=chill, energy=low
-# Recommendations:
-#   1. ...
-#   2. ...
-#   3. ...
 ### Happy Pop
 
 ```text
@@ -166,12 +147,8 @@ Because: Similar energy (+0.92)
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
-I experimented by reducing the weight of the genre feature while increasing the influence of energy similarity. This caused songs with similar energy levels to rank higher, even if they belonged to different genres.
+I experimented by reducing the weight of the genre feature to 1.0 and not 2.0 while increasing the influence of energy similarity by multiplying by 2.0. This caused songs with similar energy levels to rank higher, even if they belonged to different genres.
 
 Although the recommendations became more varied, some felt less accurate because genre is one of the strongest indicators of a user's musical preferences. I restored the original weights because they produced recommendations that better matched my expectations.
 
@@ -179,13 +156,7 @@ Although the recommendations became more varied, some felt less accurate because
 
 ## Limitations and Risks
 
-Summarize some limitations of your recommender.
 
-Examples:
-
-- It only works on a tiny catalog
-- It does not understand lyrics or language
-- It might over favor one genre or mood
 
 You will go deeper on this in your model card.
 This recommender only considers genre, mood, and energy when making recommendations. It does not consider lyrics, artists, listening history, or user feedback. Since the dataset contains only 18 songs, recommendations can become repetitive. The algorithm also favors genre, which may cause songs from other genres with similar characteristics to be ranked lower.
@@ -198,10 +169,7 @@ Read and complete `model_card.md`:
 
 [**Model Card**](model_card.md)
 
-Write 1 to 2 paragraphs here about what you learned:
 
-- about how recommenders turn data into predictions
-- about where bias or unfairness could show up in systems like this
 This project helped me understand how recommendation systems convert user preferences into numerical scores that can be used to rank content. I also learned that even a simple scoring algorithm can produce recommendations that feel personalized.
 
 One interesting takeaway was how changing a single weight could noticeably affect the recommendations. It showed me that small design decisions can introduce bias or change the overall behavior of a recommendation system, which is why testing and evaluation are important.
